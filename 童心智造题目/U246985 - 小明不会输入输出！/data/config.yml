@@ -1,0 +1,7 @@
+data_1.in:
+  timeLimit: 1000
+  isPretest: true
+
+data_2.in:
+  timeLimit: 1000
+  isPretest: true

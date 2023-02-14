@@ -1,0 +1,9 @@
+game1.in:
+  timeLimit: 1000
+  isPretest: true
+game2.in:
+  timeLimit: 1000
+  isPretest: true
+game3.in:
+  timeLimit: 1000
+  isPretest: true
