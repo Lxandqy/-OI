@@ -189,7 +189,7 @@ cout << a << endl; 输出asd，因为自动把asd后边一个改成了'\0'
 cout << a[0] << " " << a[1] << " " << a[2] << endl; //输出 a s d
 ```
 
-**他的核心就是相当于一个可变长的字符数组**，一开始他是空字符串，所以他字符数组的大小是 0，当他往里面填了两个字符后，会创建一个新的大小为2的字符数组，然后再把这两个放到这里面，所以当我们的字符串 a 里面字符有 3个的时候，我们不能使用 a[3]，因为此时大小为3，只能使用 a[0 ~ 2]。同样的，'\0'是他停止符。
+**他的核心就是相当于一个可变长的字符数组**，一开始他是空字符串，所以他字符数组的大小是 0，当他往里面填了两个字符后，会创建一个新的大小为2的字符数组，然后再把这两个放到这里面，所以当我们的字符串 a 里面字符有 3个的时候，我们不能使用 a[3]，因为此时大小为3，只能使用 a[0 ~ 2]。不同的是，'\0'不是它的停止符。
 
 ```
 string a = "123123";
@@ -208,7 +208,7 @@ a += 'c';
 cout << a; //输出abc
 ```
 
-string不像字符数组一样专门需要一个strlen函数去判断字符串大小，string里面内部有两个函数叫做 size() ,length(),可以直接输出他的答案，因为他是结构体的变量，所以使用他的函数如下
+string不像字符数组一样专门需要一个strlen函数去判断字符串大小，string里面内部有两个函数叫做 size() ,length(),可以直接输出他的长度，length()函数其实是实打实的长度，size()函数是求他内存大小的，因为一个字符是1字节，所以字符串长度 = 字符串所占内存大小，因为他是结构体的变量，所以使用他的函数如下
 
 ```
 string a = "123";
@@ -219,7 +219,7 @@ cout << a.length() << " " << a.size() << endl; //输出 3 3
 我们发现题目不确定有几行字符串，字符串中还可能出现空格，那么对于下面的题目我们可以使用如下代码
 
 ```
-while(cin >> a){ //不停的读入，当遇到文件结束的时候返回0，人为运行的时候使用control + z来表示文件结束
+while(cin >> a){ //不停的读入，cin当遇到文件结束的时候返回0，人为运行的时候使用control + z来表示文件结束
 	sum += a.length();
 }
 同意的scanf输入字符串也可以达到这种目的，scanf遇到文件结束的时候会返回-1
@@ -228,7 +228,7 @@ while(~scanf("%s",a));
 while(scanf("%s",a)!= EOF) //end of file 文件结束的意思
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221211142044671.png" alt="image-20221211142044671" style="zoom:67%;" />
+
 string还有一个很好的有关函数是在#include<cstring>头文件里的函数，getline( ) 读取一整行（包括空格）
 他的使用方法很简单如下
 
@@ -238,8 +238,9 @@ getline(cin,a);//读入一整行到字符串 a 里边
 
 ### 1.2.1 示例题目
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209144354719.png" alt="image-20221209144354719" style="zoom:67%;" />
-题目说只输入一行，倘若我们用字符数组来写是比较棘手的，但是如果通过string的getline来写的话，我们只需要循环从头到尾即可。
+### <img src="C:\Users\Admin\AppData\Roaming\Typora\typora-user-images\image-20230217164924902.png" alt="image-20230217164924902"  />
+
+题目说只输入一行，倘若我们用字符数组来写是比较棘手的，但是如果通过string的getline来写的话就很简单了。
 
 ### 练习：
 
@@ -470,8 +471,6 @@ int Sixteen2Ten(string a){
 
 ### 例题
 
-![image-20230130164957158](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20230130164957158.png)
-
 
 ```
 #include<bits/stdc++.h>
@@ -535,7 +534,8 @@ for(int i = 20 ; i <= 100; i++){
 
 ## 3.3 例题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202130646796.png" alt="image-20221202130646796" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172342022.png" alt="image-20230217172342022" style="zoom:67%;" />
+
 **思路：**题目让我们判断最多有多少动物，当脚的数量是一定的时候，鸡越多越好。判断最少有多少动物，当脚的数量是一定的，兔子越多越好，因为脚最多只有32768，所以最多只有32768 / 4 只兔子，那么我们假设兔子为 0只，1只，2只.....a / 4只得时候判断剩下的脚的数量是不是2的倍数即可。
 
 ```
@@ -564,7 +564,7 @@ int main(){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202131153328.png" alt="image-20221202131153328" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172423758.png" alt="image-20230217172423758" style="zoom:67%;" />
 
 **思路：**我们知道正方形的长宽是一样的，建立坐标系，假设我们组成正方形的最左上的方格的坐标是$x，y$，距离最下方距离是$a$，距离最右方的距离是$b$，什么时候能组成正方形？我们可以设边长为$1，2，3....a...b$的时候是否满足情况，如果a > b的话，我们的边长最多取到 $b$，如果$a <= b$的话，边长最多取到$b$。
 什么时候能组成长方形呢？我们知道长方形的长宽可以不同，那么长可以取 $1，2.....a$，宽可以取 $1,2.....b$。所以最多可以取 $a * b$ 个长方形。
@@ -572,10 +572,6 @@ int main(){
 ## 3.4 枚举中的位运算
 
 现要求我们解决一个问题：现在有10个苹果，我们有$x$元，每个苹果有一定的价格和一定的价值，请问如何选择能获得最大价值。对于每一个苹果，我们有两种选择，选或者不选。对于10个苹果一共有$2^{10}$种选择，对于所有情况，我们只需要判断一下，哪种情况价值最高即可，但是我们该如何去把这些情况给写出来呢？对于这种每个物品只有两种情况我们就可以使用二进制来写题。对于一个数字$x$，把他写成二进制形式，每一位都可以当做一个苹果，0可以代表这个苹果没有取，1代表这个苹果取了，那么对于所有情况就是在 $0$ ~ $2^{10}$。
-
-![image-20230130135237713](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20230130135237713.png)
-
-
 
 ```
 #include<bits/stdc++.h>
@@ -654,7 +650,8 @@ int main(void) {
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202155220069.png" alt="image-20221202155220069" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172534266.png" alt="image-20230217172534266" style="zoom:67%;" />
+
 **思路:**用数组套字符数组，就可以存下一个矩阵的雷区，那么对于一个非地雷格，我们只需要取判断一下他8个位置的相邻格子有地雷。
 
 ```
@@ -718,10 +715,12 @@ int main(){
 
 ## 5.4 例题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202161209767.png" alt="image-20221202161209767" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172616020.png" alt="image-20230217172616020" style="zoom:67%;" />
+
 **思路：**蜜蜂可以从哪些路走到蜂房$m$，我们发现它可以由$m - 1$,$m - 2$走过来，递推式就为$a[m] = a[m - 1] + a[m - 2]$，假设我们知道走到$m - 1$，$m - 2$的方案数我们就可以求出走到$m$的，我们继续往前推我们发现我们知道点 $n$的方案数是$1$，因为点$n$是起始位置，那么$n + 1$的方案数是$n$的方案数，因为$n - 1$不存在，通过$n,n + 1$我们能推导出$n + 2$最后推导出$m$的。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221213102314560.png" alt="image-20221213102314560" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172717431.png" alt="image-20230217172717431" style="zoom:67%;" />
+
 **思路：**第 $n$ 层楼梯可以由 第$n - 1$层楼梯，第$n - 2$楼梯走过来，那么我们可以找到递推式为 $a[i] = a[i - 1] + a[i - 2]$，现在的目标就是要找到已知的情况，我们发现它是由第$0$层开始走，那么第$0$层肯定是$1$，第$1$层肯定也是$1$，我们就可以从$0，1$推出$2$再推出$3$ .....
 
 # 6. 前缀和/差分
@@ -740,61 +739,85 @@ ${ \sum_{i = 1}^{n}} a_i $ 这个式子就代表 $a_1 + a_2 + .... + a_{n - 1} +
 
 ### 6.1.1 示例1 一维前缀和
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221110155156470.png" alt="image-20221110155156470" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172826606.png" alt="image-20230217172826606" style="zoom:67%;" />
 
 **思路**:倘若我们对于$m$个询问每次都要求一遍  $a_s + a_{s+1}...a_e$ 那么复杂度大概是在 $o(n*m)$，如果我们用一个数组$b$ 对于数组下标为 $i$ 的用来存储
 
 ${ \sum_{j = 1}^{i}} a_j $ 那么对于  $a_s + a_{s+1}...a_e$  只需要用 $b_e - b_{s - 1}$ 来表示。所以时间复杂度变成了 $o(n + m)$
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202162215620.png" alt="image-20221202162215620" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217172902649.png" alt="image-20230217172902649" style="zoom:67%;" />
+
 **思路：**如果我们把每个相乘都求出来的话，复杂度接近$O(n^2)$超时了，但是我们想到了乘法加法里面的分配律 $a_1 * (a_2 + a_3 + .. + a_n)$ = $a_1 * a_2 + a_1 * a_3 + ... + a_1 * a_n$所以最后就变成了求解$\sum_{i = 1}^{n}a_i*(\sum_{j = i + 1}^{n}a_j)$对于$\sum_{j = i + 1}^{n}a_j$ 我们只需要求解一个前缀和数组$b$，$b_i = \sum_{j = 1}^{i}a_j$，那么$\sum_{j = i + 1}^{n}a_j$ = $b[n] - b[j]$，所以最后复杂度变成了$O(n)$
 
 ### 6.1.2 示例2 二维前缀和
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117210000077.png" alt="image-20221117210000077" style="zoom:67%;" />
-**思路：**查询最多有$200000$次，但是$n，m$都为$100$，所以如果我们用二重for循环去求和的话复杂度为 $O(n * m * q)$，考虑前缀和，假设我们预处理出来每一排的复杂度，这样我们可以把复杂度降为 $O(n * q)$ 倘若我们每次的查询能为 $O(logn)$或者$O(1)$就好了。所以有另一种方法就是二维前缀和，能够直接处理出矩形的前缀和。假设 $a[x][y]$求的是前 $x$列，前$ y$行的所有值的和。那么对于一个左上角的点为 $(x1,y1) $右下角的点位$(x2,y2)$的矩阵求和。
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221229102016812.png" alt="image-20221229102016812" style="zoom:67%;" />
-我们想要拿到如上图阴影面积
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217173023305.png" alt="image-20230217173023305" style="zoom:67%;" />
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221229102202756.png" alt="image-20221229102202756" style="zoom:67%;" />
-我们可以先拿到如上图的阴影面积，也就是$a[x][y]$，然后再去减去多余的面积
+**思路：**查询最多有$200000$次，但是$n，m$都为$100$，所以如果我们用二重for循环去求和的话复杂度为 $O(n * m * q)$，考虑前缀和，假设我们预处理出来每一排的复杂度，这样我们可以把复杂度降为 $O(n * q)$ 倘若我们每次的查询能为 $O(logn)$或者$O(1)$就好了。所以有另一种方法就是二维前缀和，能够直接处理出矩形的前缀和。如图1设置一个定义：用正方形的左上角坐标来代替此正方形，用面积来代替和，并且假设 $a[x][y]$求的是前 $x$列，前$ y$行的所有值的和。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221229102415841.png" alt="image-20221229102415841" style="zoom:67%;" />
-我们减去如上图的阴影面积，也就是$a[x2][y1]$
+![image-20230217191435880](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217191435880.png)
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221229102617038.png" alt="image-20221229102617038" style="zoom:67%;" />
-我们再减去如上图的阴影面积，也就是$a[x1][y2]$
 
-此时我们多减了一块面积也就是$a[x1][y1]$，我们再给他加上，这样子就能得到一开始的阴影面积了
 
-最后我们通过$O(1)$的复杂度拿到了面积也就是 $a[x2][y2] - a[x2][y1] - a[x1][y2] + a[x1][y1]$
+现在我们想要拿到如图2的阴影面积
+
+![image-20230217191723274](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217191723274.png)
+我们可以先拿到如图3的阴影面积，也就是$a[x][y]$，然后再去减去多余的面积
+
+![image-20230217191809429](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217191809429.png)
+我们现在需要减去如图4的阴影面积
+
+![image-20230217191922368](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217191922368.png)
+
+
+
+图4的面积可以由图6，图7组成。
+![image-20230217192147704](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217192147704.png)
+
+图6的面积也就是 $a[x2][y1 - 1]$
+
+![image-20230217192305075](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217192305075.png)
+
+
+
+图7的面积也就是$a[x1 - 1][y2]$
+
+此时我们多减了一块面积也就是 如图8的阴影面积
+
+![image-20230217192847599](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217192847599.png)
+
+
+
+也就是$a[x1 - 1][y1 - 1]$
+
+所以最后的答案就是$a[x2][y2] - a[x2][y1 - 1] - a[x1 - 1][y2] + a[x1 - 1][y1 - 1]$
+
+那么如何求出 $a$ 数组呢？假如说，我们现在按照顺序去求也就是说先求出 $a[i][1],a[i][2]...a[i + 1][1],a[i + 1][2]...$
+
+那么对于 $a[x][y] = a[x - 1][y] + a[x][y - 1] - a[x - 1][y - 1]$
+
+最后的复杂度就是$o(n * m + q)$
 
 ## 6.2 差分
 
-### 解释
-
-差分是一种和前缀和相对的策略，可以当做是求和的逆运算。
-
-这种策略的定义是令![image-20221110194141153](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221110194141153.png)
-
-### 性质
-
-![image-20221110194201367](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221110194201367.png)
+![image-20230217193301184](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217193301184.png)
 
 
 
 ### 6.2.1 示例1 一维的差分
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221110194404960.png" alt="image-20221110194404960" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217193513844.png" alt="image-20230217193513844" style="zoom: 80%;" />
 
 **思路**:如果对于每次都For循环一遍进行修改的话 复杂度为 $o(n * m)$所以一定会超时，但是我们想一下给$a_s,a_{s + 1}....a_e$每个数都加上h，$a_{s + 1}$和$a_s$的相对大小没有改变，$a_{s + 1}$ 和 $a_{s + 2}$的相对大小也没改变.....$a_e$和$a_{e - 1}$的相对大小也没改变，相对大小改变的只有 $a_s$ 和 $a_{s - 1}$ 还有 $a_e$ 和 $a_{e + 1}$。那么它们之间的相对大小可以用他们的差值来代表，假设我们用 $b_i$来代表  $a_i$ 和 $a_{i - 1}$的相对大小，我们最后只需要改变 $b_s$ 和 $b_{e + 1}$ 的大小即可，给$b_s + h$ 给  $b_{e + 1} - h$。那么如何求最后的$a_i$的值呢，我们继续思考 $b_1$ = $a_1$ - $a_0$，$b_2$ = $a_2$ - $a_1$，$b_3$ = $a_3$ - $a_2$，我们发现 $a_i$ = ${\sum_{1}^{i}}b_i$，所以最后修改变成了 $o(m)$查询变成了$o(n)$ 最后总复杂度为 $o(n + m)$
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202163234237.png" alt="image-20221202163234237" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217193644917.png" alt="image-20230217193644917" style="zoom:80%;" />
+
 **思路：**我们如果用循环暴力模拟的话，复杂度大约在$O(n^2)$，好在我们学过差分，倘若我想要把牌全部都打完，假设我用 $a$ 数组用来存每个位置的牌，用 $b$ 数组求$a$ 的差分数组，那么当我把 $a$ 的牌打完后 $b$ 数组中的每一个位置都变为 $0$，所以我只需要模拟如何让 $b$ 数组每个位置都变为 $0$ 即可，因为每一次只能连续的出一张牌，所以题目变成了，用最少的 -1 +1，将 $b$ 数组变为 $0$，那就变成了一个贪心的题目。
 
 ### 6.2.2 示例2 二维的差分
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117214520937.png" alt="image-20221117214520937" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217193737697.png" alt="image-20230217193737697" style="zoom:80%;" />
+
 **思路**:如果每次修改都是遍历整个矩阵的话那么复杂度在 $O(n * m * q)$，如果对于每一列或者每一行维护一个差分数组的话那么复杂度在$O(n * q)$。所以倘若我们每次的查询能为 $O(logn)$或者$O(1)$就好了。所以有一种方法叫做二维差分，就是对于矩形有一种二维差分。
 
 $a[][]$数组是$b[][]$数组的前缀和数组，那么$b[][]$是$a[][]$的差分数组
@@ -803,27 +826,63 @@ $a[][]$数组是$b[][]$数组的前缀和数组，那么$b[][]$是$a[][]$的差�
 
 我们去构造差分数组： $b[i] [j]$
 
-使得$a$数组中$a[i][j]$是b数组左上角$(1,1)$到右下角$(i,j)$所包围矩形元素的和。
+同样的我们还是假设每个正方形的左上角的坐标，去代替这个正方形
 
-如何构造$b$数组呢？
+使得$a$数组中$a[i][j]$是$b$数组左上角$(1,1)$到右下角$(i,j)$所包围正方形元素的和。 // 注意 $a$ 数组是记录正方形毯子数量的
+
+如何构造 $b$ 数组呢？
 
 我们去逆向思考。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118110614135.png" alt="image-20221118110614135" style="zoom:67%;" />
-假如我们给$b[x1] [y1] + c$。那么红色区域的值都会受到影响，但是我们想要 $x2$行以下，$y2$行往右都不受到影响，我们就要在差分数组这里减掉。
+假设我现在修改了 $b[x][y]$ 数组 $a$ 数组会发生什么变化，如图1。
 
-$b[x1] [y1] += c$，这个无可厚非。
+![image-20230217210957512](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217210957512.png)
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118111728880.png" alt="image-20221118111728880" style="zoom:67%;" />
-如果我们给$b[x2 + 1] [y1] -= c $我们会发现上图红色区域都会减去 $c$
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118111829317.png" alt="image-20221118111829317" style="zoom:67%;" />
-如果我们给b[x1] [y2 + 1] -= c我们发现上图红色区域都会减去c
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118111915786.png" alt="image-20221118111915786" style="zoom:67%;" />
-最后我们发现除了上图红色区域多减了$c$其他的都已经平衡了，所以我们只需要给 $b[x2 + 1] [y2 + 1] += c $           即可
+因为 $a$ 数组是 $b$ 数组的前缀和数组，所以右下角的所有都会受到影响
 
-因为我们一开始可以把数组 $a$ 全都当成 $0$，那么数组$b$也全都是$0$。最后通过修改$b$的值即可获得最初的$a$数组。 
+那么现在假如现在盖了一个毯子如图2
+
+![image-20230217211512637](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217211512637.png)
+
+
+
+也就是说如图2的阴影 $a$ 数组这些正方形都会收到影响
+
+那么由我们刚刚对 $b$ 数组的操作对 $a$ 数组产生的影响，完全可以实现图2的影响
+
+首先我们给 $b[x1][y1] += 1$ ，会实现如图3的影响
+
+![image-20230217211928747](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217211928747.png) 
+
+那么现在我们需要消除如图4额外的影响
+
+![image-20230217212108420](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217212108420.png)
+
+
+
+那么我们只需要先消除如图5，图6的影响
+
+![image-20230217212222406](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217212222406.png)
+
+
+
+也就是说要给 $a[x2 + 1][y1] -= 1$ 这样就抵消了这部分的影响
+
+![image-20230217212352891](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217212352891.png)
+
+
+
+也就是说要给 $a[x2][y2 + 1] -= 1$ 这样就抵消了这部分的影响
+
+但是我们多减了一部分如图7也就是 $a[x2 + 1][y2 + 1] += 1$
+
+![image-20230217213634353](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230217213634353.png)
+
+
+
+所以最后的复杂度就是 $O(n *m + q)$
 
 # 7. 排序
 
@@ -978,8 +1037,8 @@ void insertion_sort(int n) {
 
 这个函数是在我们的 algorithm 库里面的一个函数，让排序的复杂度在$o(nlogn)$左右
 **使用方法如下**：
-![image-20221117171117531](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117171117531.png)
-![image-20221117171132735](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117171132735.png)
+	![image-20230218195547693](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218195547693.png)
+	
 
 上图是sort函数的源码，有两种，我们先说第一个，如图所示第一个参数是 _RaIter类型的，那么对于数组来说的话，就是我们想要排序第一个数的首地址，第二个参数对于数组来说就是想要排序最后一个数字的末尾地址
 
@@ -1030,13 +1089,16 @@ sort(a + 1,a + n + 1,cmp);
 
 ### 7.6.1 示例题目
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209150941372.png" alt="image-20221209150941372" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218203532905.png" alt="image-20230218203532905" style="zoom:80%;" />
+
 **思路：**虽然我们可以快速的去找到最大的，最小的，但是我们没法通过判断快速的找到第k大的，所以我们可以利用排序，将他从小到大排序，排序完之后，我们发现可以直接输出即可。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209151127047.png" alt="image-20221209151127047" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218203651361.png" alt="image-20230218203651361" style="zoom:80%;" />
+
 **思路：**这道题我们有好几种方式去选择，第一种方式是去记录当前这个数字出现了几次，最后只需要从最小的数字循环到最大的数字去判断一下有没有出现过就行，第二种方式就是排序，假设我们已经完成了从小到大排序，那么对于相同的值一定会出现相邻位置，那么我们只需要判断相邻位置是否相同即可，若相邻相同则不继续输出了。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209172507260.png" alt="image-20221209172507260" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218203805317.png" alt="image-20230218203805317" style="zoom:80%;" />
+
 **思路：**对于多个关键词的排序，我们最好的方法就是结构体，因为如果我们使用多个数组去存的话，交换的时候很麻烦，但是使用结构体的话就变成了一次交换，然后在使用以上的三个排序选择一个进行排序
 
 ```
@@ -1150,7 +1212,7 @@ int main(){
 
 ### 过程
 
-以在一个升序数组中查找一个数为例。
+以在一个升序(满足任意一个$i$使得$a[i + 1] >= a[i]$)数组中查找一个数为例。
 
 它每次考察数组当前部分的中间元素，如果中间元素刚好是要找的，就结束搜索过程；如果中间元素小于所查找的值，那么左侧的只会更小，不会有所查找的元素，只需到右侧查找；如果中间元素大于所查找的值同理，只需到左侧查找。
 
@@ -1205,20 +1267,23 @@ while(l + 1e-3 < r){
 
 #### 模板1讲解：
 
-![image-20221117201643353](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117201643353.png)
-如图若是按照我们模板一来说的话，当check(mid) 为真的话，说明满足条件的就是在 mid ~ r的范围内，那么我们只需要把 l 改成 mid即可。
+![image-20230218204907256](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218204907256.png)
+
+如图1若是按照我们模板一来说的话，当check(mid) 为真的话，说明满足条件的就是在 mid ~ r的范围内，那么我们只需要把 l 改成 mid即可。
 
 当check(mid)为假的话，说明满足条件的就是在 l ~ mid - 1的范围内，因为 mid也不满足。所以我们只需要把 r 改成 mid - 1。
 
-那么为什么我们的 mid = l + r + 1 >> 1 ? 这其实是为了防止死循环，当我们的 l + r  >> 1 == l 也就是 l = r - 1 的时候 我们每次如果check(mid) 为真 那么 l = mid = l所以 l就会一直为 l 所以会导致死循环。
+那么为什么我们的 mid = l + r + 1 >> 1 ? 这其实是为了防止死循环，当我们的 l + r  >> 1 == l 也就是 l = r - 1 的时候 我们每次如果check(mid) 为真 那么 l = mid = l所以 l就会一直为 l 所以会导致死循环，最后题目的答案就是 l ，因为 l 一直是满足条件的情况。
 
 #### 模板2讲解：
+
+![image-20230218205024411](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205024411.png)
 
 如图若是按照我们模板一来说的话，当check(mid) 为真的话，说明满足条件的就是在 1~ mid的范围内，那么我们只需要把 r 改成 mid即可。
 
 当check(mid)为假的话，说明满足条件的就是在mid + 1 ~ r的范围内，因为 mid也不满足。所以我们只需要把 l 改成 mid + 1。
 
-那么我们这里的 mid = l + r >> 1 不加上1了呢？ 考虑 r + l >> 1  == r 此时l == r 所以已经不满足条件，所以我们无需加1
+那么我们这里的 mid = l + r >> 1 不加上1了呢？ 考虑 r + l >> 1  == r 此时l == r 所以已经不满足条件，所以我们无需加1，最后的答案就是 r。
 
 #### 模板3讲解：
 
@@ -1226,7 +1291,8 @@ while(l + 1e-3 < r){
 
 ## 8.1 例题1 整数二分
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117190622726.png" alt="image-20221117190622726" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205303618.png" alt="image-20230218205303618" style="zoom:80%;" />
+
 **思路**:此题$n$的大小为$10^6$所以每一次for循环去查找整数$q$造成的复杂度$o(nm)$会超时，所以我们考虑二分，由于题目说给出的数字是单调不减的也就是有序的，所以我们不需要排序，直接二分就可以了。
 
 ```
@@ -1244,7 +1310,8 @@ while(l < r){
 
 ## 8.2 例题2 二分答案
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221117203654259.png" alt="image-20221117203654259" style="zoom: 67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205516444.png" alt="image-20230218205516444" style="zoom:80%;" />
+
 **思路**：倘若，我们从树的最高高度往下找那么复杂度就是 $O(h * n)$我们遍历高度的同时，还要去判断哪些树产生了木材。我们思考对于高度有没有什么特殊性质，我们能够发现如果我砍的高度为 $x$都不行的话，$x$以上的高度肯定也不行，如果$x$可以的话，$x$以下的高度肯定可以，所以满足二分的条件。所以我们直接二分这个高度，如果产生的木材数量能够达到我们要求说明，我们现在的高度刚好是答案或者现在的高度太矮了。我们就需要把高度往上提，否则我们就要把高度往下提
 
 ```
@@ -1264,12 +1331,14 @@ while(l < r){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209180058887.png" alt="image-20221209180058887" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205543301.png" alt="image-20230218205543301" style="zoom: 80%;" />
+
 **思路：**我们同样思考，如果我跳的距离为 $x$需要移动 $y$块石头，那么我跳的距离为 $x + 1$ 需要移动的石头会比$ y$ 大吗？一定会比 $y$ 小，如果我跳的距离为 $x - 1$，那么需要移动的石头会比$y $小吗？一定不会，所以满足我们二分的条件，所以我们只需要二分我们跳跃的距离即可。
 
 ## 8.3 例题3 浮点数二分
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221215135115596.png" alt="image-20221215135115596" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205616020.png" alt="image-20230218205616020" style="zoom:80%;" />
+
 **思路：**经典的浮点数二分，因为 对于$x$来说 $x^3$ 一定 小于$ (x + 1)^3$，$(x - 1)^3$ 一定小于 $(x^3)$，我们直接二分答案直到逼近$n$，但是由于题目让我们保留6位小数，所以我们的误差最好不要大于 1e-7，不然可能会导致错误。
 
 ```
@@ -1355,16 +1424,17 @@ int main(){
 
 ## 9.4 排序解法例题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202165320635.png" alt="image-20221202165320635" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218205931083.png" alt="image-20230218205931083" style="zoom:80%;" />
 
 **思路：**倘如一共有 $n$ 个人，其中一个人接水的时间是 $x$，另一个人是$y$，满足$x > y$，倘如让这个 $x$ 这个人在 $y$ 前接水，那么答案就是 $k_1 = (n - 1) * x + (n - 2) * y$，倘如让这个 $y$ 这个人在 $x$ 前接水，那么答案就是 $k_2 = (n - 1) * y + (n - 2) * x$，明显$k_2 > k_1$，所以一定是接水时间少的在前面最优，我们只需要对序列排个序即可。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202165839002.png" alt="image-20221202165839002" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218210220297.png" alt="image-20230218210220297" style="zoom:80%;" />
+
 **思路：**首先第一件事一定是排序，按照左端点从小到大或者按照右端点从小到大排序，只有这样我们才能找到线段的之间的规律。假设就是按照左端点从小到大排序的，对于几个有交集的区间来说什么时候最优呢？一定是选择右端点最靠左的那个区间，因为我们是按照左端点排序的，我们想要能够选择下一个区间的概率更大，所以选择右端点最靠左的区间概率最大。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202173829054.png" alt="image-20221202173829054" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218210148914.png" alt="image-20230218210148914" style="zoom:80%;" />
+
 **思路：**我们首先得让我们的每个区间有序，只有区间有序我们才能够找到规律。如何放最少的点，无非就是在重叠的区间部分放更好，所以我们就要思考如何去考虑区间重叠，假设我们按照左端点从小到大排序的话，那么前后两个区间什么时候相交呢？假设我们现在确定了一段区间左端点的坐标是$x$，右端点的坐标是$y$，一共会出现如下情况
-![image-20221202182421034](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202182421034.png)
 
 1. 存在一个区间 x1，y1 使得 x1 <= x，y1 <= y，这两条边的相交部分是 x，y1。
 2. 存在一个区间 x2，y2 使得 x2 = x，y2  > y，这两条边的相交部分是 x1，y2。
@@ -1416,7 +1486,8 @@ int main (){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221202183552552.png" alt="image-20221202183552552" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218210304700.png" alt="image-20230218210304700" style="zoom:80%;" />
+
 **思路：**这道题和第一道题一模一样。
 
 ```
@@ -1469,10 +1540,12 @@ int main (){
 
 ### 模拟解法例题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209194639520.png" alt="image-20221209194639520" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218210351683.png" alt="image-20230218210351683" style="zoom:80%;" />
+
 **思路：**对于当前元素只有两种选择 并到其他段上和单独一段，我们就按照这个思想模拟即可。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221209194757432.png" alt="image-20221209194757432" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218210412362.png" alt="image-20230218210412362" style="zoom:80%;" />
+
 **思路：**所有士兵撤离独木桥的时间取决于最后一个撤离独木桥的士兵，一个士兵撤离独木桥有两种，一种是去0点，一种是去 L + 1点，对于所有士兵最小撤桥值取个最大值即可！
 
 ### 练习：
@@ -1497,13 +1570,14 @@ int main (){
 
 ## 10.1 示例1
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221215103135355.png" alt="image-20221215103135355" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218211242604.png" alt="image-20230218211242604" style="zoom:80%;" />
 
 **思路：**如果我们使用普通双指针，对于起点为 $i$的我们每次找到一个终点为$j$的最长不包含重复的数的连续区间需要的复杂度就是 $O(n^2)$。现在假设其中的一个区间是$(i,j)$。我们思考 $(i + 1,k)$ 这个$k$和之前的区间$(i,j)$有什么关系？我们发现 $k$一定大于等于$j$，所以我们每次只需要对$i$点进行一个消除即可，随后再把$j$按照条件慢慢变大即可。
 
 ## 10.2 示例2
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221215103759391.png" alt="image-20221215103759391" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218211320092.png" alt="image-20230218211320092" style="zoom:80%;" />
+
 **思路：**如果我们用$i$遍历$a$数组去匹配$b$数组中的$j$我们需要的复杂度是$O（n^2）$但是我们首先要发现个规律对于 $a[i] + b[j - 1] < x，a[i] + b[j] > x$，那么$a[i + 1] + b[j] > x$,但是我们并不知道 $a[i + 1] +  b[j - 1]$与$x$的关系，所以我们只需要从$j - 1$的基础上去缩小直到满足 $<= x$
 
 # 11. 离散化
@@ -1565,10 +1639,11 @@ for(int i=1; i<=n; i++) {
 
 ## 12.1 汉诺塔问题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118164413211.png" alt="image-20221118164413211" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218211420002.png" alt="image-20230218211420002" style="zoom:80%;" />
 假设现在有三个柱子分别为A、B、C，当A初始只有一片圆盘只需从A → C 即可满足。传递次数为1次
 
 <img src="https://img-blog.csdnimg.cn/20210607175624363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUxNjAxMTA1,size_16,color_FFFFFF,t_70" alt="img" style="zoom: 33%;" />
+
 当A初始有2片圆盘时，只需先将A → B，再将A → C，最后将B → C 即可满足。传递次数为3次
 <img src="https://img-blog.csdnimg.cn/20210607180639175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUxNjAxMTA1,size_16,color_FFFFFF,t_70" alt="img" style="zoom: 33%;" />
 
@@ -1620,8 +1695,9 @@ void Hanoi(int n,char pos1,char pos2,char pos3){
 
 ## 12.2 递归回溯问题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221118211813128.png" alt="image-20221118211813128" style="zoom:67%;" />
- 与之前的题不同的是，此题要求$n$个数字互不相同，意味着我们在递归的过程中要判断当前数字是否使用过，其实很简单，如果我们使用了当前数字我们可以开一个数组，给他打上一个标记。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218211753225.png" alt="image-20230218211753225" style="zoom:80%;" />
+
+ **思路：**与之前的题不同的是，此题要求$n$个数字互不相同，意味着我们在递归的过程中要判断当前数字是否使用过，其实很简单，如果我们使用了当前数字我们可以开一个数组，给他打上一个标记。
 
 ```
 int b[10];
@@ -1666,7 +1742,8 @@ void dfs(int x){
 
 ## 12.3 八皇后问题
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221123141545394.png" alt="image-20221123141545394" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218211840999.png" alt="image-20230218211840999" style="zoom:80%;" />
+
 **思路：**八皇后是最经典的递归回溯问题，因为我们每一次摆放皇后都需要看前面皇后的位置。
 我们可以从第一行开始摆，假设摆在了 x,y这个位置，从此以后，第x行，第y列都不能再摆放皇后了，这个很好记录，无非就是设置两个数组，用下标来代表行号和列号，用0代表可以放，用1代表不能放。比较难想的是对角线，我们尝试找规律发现右下斜线每次往下移一个行 +1，列 +1，所以一个斜线的 x - y都相同。那么会产生不同斜线的和此斜线的 x - y相同？对于x不变y改变的，x - y 会改变，对于x改变的y不改变的，x - y也会改变，所以最后得证 一个斜线的x - y相同，不同斜线的 x - y 不同，所以当前斜线，我们用数组记录 x - y即可。那么对于右上斜线的呢？我们发现，往右上移一个 x - 1，y + 1 所以发现规律，一个斜线的 x + y是相同的，那么不同斜线的x + y会相同吗？显然不会，最后发现，分别用 x - y和 x + y代表斜线的记录即可。
 现在剩下最后一个问题当 x - y小于0怎么办，我们数组不能存储小于0的。我们只需把数组扩大，整体 x - y都加上一个很大的值，这样就不会小于0了。
@@ -1744,17 +1821,17 @@ int main(){
 
 如下图所示这就是一棵树
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111102838764.png" alt="image-20221111102838764" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184114990.png" alt="image-20230224184114990" style="zoom:80%;" />
 
 
 如下图所示不是一棵树，**因为产生了一个环**
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111102912321.png" alt="image-20221111102912321" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184135396.png" alt="image-20230224184135396" style="zoom:80%;" />
 
 
 如下图所示不是一棵树，**因为有个点不能通过边互相到达**
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111103010446.png" alt="image-20221111103010446" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184152799.png" alt="image-20230224184152799" style="zoom:80%;" />
 
 
 其实上图可以给他叫做**森林**，什么是森林呢？就是由多棵树组成的图叫做森林，但是森林里面的树不能有环，仅仅是多棵树而已。
@@ -1763,31 +1840,29 @@ int main(){
 
 ### 树根(根节点)
 
-每棵树有且只有一个树根，每个节点都可以当树根，但是他们的性质不一样
-
-![image-20221111113147704](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111113147704.png)
-只有你确定了哪个点是树根，你才可以确定以下知识节点。
+每棵树有且只有一个树根，每个节点都可以当树根，但是他们的性质不一样，只有你确定了哪个点是树根，你才可以确定以下知识节点。
 
 ### 子节点
 
 子节点是相对于一个点来说的，就是与这个点相连的就是子节点
 
-![image-20221111113300934](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111113300934.png)
-如图 若 点a 是根节点 点 a 的子节点为 点 b，f。点 b 的子节点为 点 c，d，e。 而点 c，d，e，f 没有子节点。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184252603.png" alt="image-20230224184252603" style="zoom:80%;" />
+
+如图 若 点a 是根节点 点 a 的子节点为 点 b，c。点 b 的子节点为 点 d，e，点c的子节点为 f，g。 而点 d，e，f， 没有子节点。
 
 ### 父亲节点
 
 父亲节点也是相对于一个点来说
 
-![image-20221111113617853](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111113617853.png)
-如图 若点 a 是根节点 点 a 没有父亲节点，点 b，f 的父亲节点是 点 a。点 c，d，e 的父亲节点是点 b。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184405949.png" alt="image-20230224184405949" style="zoom:80%;" />
+如图 若点 a 是根节点 点 a 没有父亲节点，点 b，c 的父亲节点是 点 a。点 d，e 的父亲节点是点 b。
 
 ### 叶子节点
 
 没有子节点的就是叶子节点
 
-![image-20221111113831668](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111113831668.png)
-如图 若点 a 是根节点。 点 c，d，e，f 是叶子节点。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184443875.png" alt="image-20230224184443875" style="zoom:80%;" />
+如图 若点 a 是根节点。 点 d，e，f，g 是叶子节点。
 
 ### 深度
 
@@ -1795,31 +1870,32 @@ int main(){
 
 距离根节点几个节点，深度就是几
 
-![image-20221111114053809](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111114053809.png)
-如图 若点 a 是根节点。点 a的深度是 0，点 b，f 的深度是1，点 c，d，e 的深度是2。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184520244.png" alt="image-20230224184520244" style="zoom:80%;" />
+如图 若点 a 是根节点。点 a的深度是 1，点 b，c 的深度是2，点 d，e，f，g 的深度是3。
 
 ### 子树
 
 子树也是相较于根节点来说的，与当前点以及其子节点组成的树就是当前点的子树
 
-![image-20221111114053809](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111114053809.png)
-如图 若点 a 是根节点。 点 a 的子树就是 点a，b，f，c，d，e组成的树。
-点 b 的子树就是 点 b，c，d，e组成的树
-点 c，d，e ，f 的子树 就是其自己组成的树
+
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184648708.png" alt="image-20230224184648708" style="zoom:80%;" />
+如图 若点 a 是根节点。 点 a 的子树就是 点a，b，f，c，d，e，g组成的树。
+点 b 的子树就是 点 b，d，e组成的树
+点 g，d，e ，f 的子树 就是其自己组成的树
 
 ### 兄弟节点
 
 同一个父亲节点的两个节点可以称作兄弟节点。
 
-![image-20221111114053809](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111114053809.png)
-如图 若点 a 为根节点。那么 点 b 和 f 互相是兄弟节点，点 c，d，e 互相是兄弟节点。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184800172.png" alt="image-20230224184800172" style="zoom:80%;" />
+如图 若点 a 为根节点。那么 点 b 和 c 互相是兄弟节点，点 d，e 互相是兄弟节点。
 
 ### 堂兄弟节点
 
 深度相同，父亲节点不同的点互相称为堂兄弟节点
 
-![image-20221111115004816](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111115004816.png)
-如图 点 c，d，e 和 点 g，h 互相称为堂兄弟节点。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184820658.png" alt="image-20230224184820658" style="zoom:80%;" />
+如图 点 d，e 和 点 g，f 互相称为堂兄弟节点。
 
 ### 度
 
@@ -1833,10 +1909,8 @@ int main(){
 
 从当前点，走到树根上的路径上的所有点都可以称作当前点的祖先
 
-![image-20221111115542266](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111115542266.png)
-如图 若点 a 为根节点，点 d，c，e 的祖先节点都为 b，a。
-
-点 g，h 的祖先节点为 f，a
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224184837858.png" alt="image-20230224184837858" style="zoom:80%;" />
+如图 a 是根节点，点 d 的祖先有 b，a。点 f 的祖先有 c，a。
 
 ### 链
 
@@ -1861,8 +1935,7 @@ int main(){
 一棵深度为$k$的有$n$个结点的二叉树，对树中的结点按从左到右，从上至下的顺序进行编
 号，如果编号为 $i$的结点与满二叉树中编号为$i$的结点在二叉树中的位置相同，则这
 棵二叉树称为完全二叉树
-
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111120650292.png" alt="image-20221111120650292" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185023418.png" alt="image-20230224185023418" style="zoom:80%;" />
 如图就是从上至下、从左到右的顺序进行编号
 
 ### 完满二叉树
@@ -1889,7 +1962,8 @@ int main(){
 树的遍历就是，通过给出的根节点，通过边走过树的每一个点，从而获得树的信息，例如一个点的深度，子节点，父亲节点。
 我们可以通过递归来遍历整棵树，因为我们对于递归的动作是，查看当前点有哪些点与他有关，然后走向下一个点。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221123160904882.png" alt="image-20221123160904882" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185132245.png" alt="image-20230224185132245" style="zoom:80%;" />
+
 这道题就是一道很好的树的遍历题目。
 
 ```
@@ -1988,9 +2062,10 @@ int main(){
 
 3. 每个点的子节点
 
-   <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221123204721864.png" alt="image-20221123204721864" style="zoom:67%;" />
-   我们随机选择一个点，如果这个点有父亲节点，那么他一定不是根节点，我们只需要再去判断这个根节点是否还有父亲节点即可，重复这个操作，直到找到一个没有父亲节点的点
-
+   <img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185202451.png" alt="image-20230224185202451" style="zoom:80%;" />
+   
+我们随机选择一个点，如果这个点有父亲节点，那么他一定不是根节点，我们只需要再去判断这个根节点是否还有父亲节点即可，重复这个操作，直到找到一个没有父亲节点的点
+   
    ```
    #include<iostream>
    #include<cstring>
@@ -2083,24 +2158,24 @@ int main(){
 
 顾名思义就是记录树上每个节点的儿子有谁，如果是多叉树的话，我们看不准一个节点最多有几个儿子，所以我们需要开足够大的数组，那么我们的空间复杂度会很大，因为二叉树最多有两个子节点，所以我们只需要开两个变量记录即可。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124133142713.png" alt="image-20221124133142713" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185248903.png" alt="image-20230224185248903" style="zoom:80%;" />
+
 已经告诉了我们每个节点的子节点是谁，那么我们只需要找到根节点就可以遍历整棵树了，根节点不是任何人的儿子节点，所以我们只需要找到哪个点在这中间没有出现过即可，最后通过每个点的儿子节点遍历整棵树复杂度为$O(n)$
 
 ### 13.5.2 二叉树的数组表示法
 
-如果我们给我们的二叉树全部都按照完全二叉树那样从上到下，从左到右取编号，我们就知道编号为 $i$ 的左儿子的编号一定是 $i * 2$ ，编号为 $i$ 的右儿子的编号一定是 $i * 2 + 1$ ，所以我们完全也可以用数组来存储二叉树，如图
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125130832622.png" alt="image-20221125130832622" style="zoom:67%;" />
-
-假设B有右子节点，D有左子节点，那么此图就变成了一个完全二叉树，我们按照完全二叉树取编号，这样就可以用数组来存储整棵树了。
+如果我们给我们的二叉树全部都按照完全二叉树那样从上到下，从左到右取编号，我们就知道编号为 $i$ 的左儿子的编号一定是 $i * 2$ ，编号为 $i$ 的右儿子的编号一定是 $i * 2 + 1$ ，所以我们完全也可以用数组来存储二叉树
 
 ### 13.5.3 二叉树的前序遍历
 
 大家知道如果我们给多叉树的边换换位置，它长的就不一样了，但是二叉树由于固定了左儿子和右儿子，所以二叉树的形态是不会改变的，所以有了多种遍历二叉树的方式，第一种方式就是前序遍历，前序遍历就是先遍历根节点，再遍历左子树的根节点，遍历完左子树所有点之后，再遍历右子树的根节点
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124135017596.png" alt="image-20221124135017596" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185402940.png" alt="image-20230224185402940" style="zoom:80%;" />
+
 如图，A是这颗二叉树的根节点，那么先遍历A，遍历A了之后遍历左子树，那么左子树以B为根节点，再遍历B的左子树，左子树的根节点为C，再遍历B的右子树，右子树的根节点为D，再遍历A的右子树，根节点为E，再遍历E的右子树，因为E没有左子树，根节点为F，最后遍历的总过程就是ABCDEF
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124135613056.png" alt="image-20221124135613056" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185638657.png" alt="image-20230224185638657" style="zoom:80%;" />
+
 通过题目来看，已经告诉了我们所有树左儿子是谁，右儿子是谁。那么我们使用递归进行遍历的时候，每一次进入一个儿子节点，都是进入以儿子节点为根节点的子树，所以我们直接输出当前儿子节点的编号即可，但是每次递归是需要先进入左子树，再进入右子树。
 
 我们看递归做的事情是什么，是输出 以 $x$为根节点的子树的根节点，再进入遍历$x$的左子树，再进入遍历$x$的右子树
@@ -2157,21 +2232,21 @@ void dfs(int x){
 
 首先我们通过前序遍历可以知道，这整颗树的根节点是点A，那么现在确定的树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124153612560.png" alt="image-20221124153612560" style="zoom:67%;" />
+![image-20230224185714179](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185714179.png)
 现在我们想要组合 点A的左子树，我们就可以通过中序遍历找到A，因为中序遍历先遍历左子树，所以A的左边CBDE一定都是A的左子树节点。
 
 那么接下来我们就看前序遍历的B，因为前序遍历先遍历根节点，遍历完根节点后紧接着就是左子树的根节点，倘若A有左子节点，那么前序遍历A的右边第一个一定是A的左子树的根节点，所以现在确定的树的形态如下图
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124154302821.png" alt="image-20221124154302821" style="zoom:67%;" />
+![image-20230224185746158](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185746158.png)
 那么我们想要点B的左子树，同样的继续查看中序遍历B的左边有哪些，发现只有C，那么C一定是B的左子节点，所以现在确定的树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124154444291.png" alt="image-20221124154444291" style="zoom:67%;" />
+![image-20230224185805408](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185805408.png)
 我们再继续查看C节点的左子树，发现中序遍历里C的左边没有点了，那么C一定不存在左子树，那么我们就查看C的右子树，因为中序遍历先遍历左子树再遍历右子树，所以C的右边有些点可能是C的右子树，但是我们如何确定哪些点是呢？我们发现C的右边有点B，因为点B是点C的父亲节点，所以一定是等遍历完C的右子树才会遍历到，所以我们可以推导点B,C之间的就是组成点C右子树的点。由于B,C之间没有点，所以点C也没有右子树。那么我们确定了B的左子树的组成，接下来看B的右子树的组成，同样的B的右子树的组成一定由中序遍历B,A之间的点DE组成的。同样的此时，我们再看前序遍历点C的右边一位，因为前序遍历先遍历左子树再遍历右子树，所以去掉左子树的点C后，B右边第一位一定是右子树的根节点。所以点D一定是点B的右子树的根节点。此时确定的树的形态如下图
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124155431845.png" alt="image-20221124155431845" style="zoom:67%;" />
+![image-20230224185833881](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224185833881.png)
 我们继续查看点D是否有左子树，同样的看前序遍历点D的左边，我们发现点D的左边有B,C，但是BC我们已经确定过了，所以我们可以就去掉B,C就行了，发现点D左边就没有点了，说明点D没有左子树，那么我们继续查看点D的右子树，同样的看中序遍历点D的右边有EAF，但是因为A是点D的祖先，我们确定完点D的右子树之后才能返回点A，所以点A,D之间的点一定是组成D右子树的点，我们发现只有点E，那么此时确定的树的形态如下图
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124160000004.png" alt="image-20221124160000004" style="zoom:67%;" />
+![image-20230224190022574](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190022574.png)
 我们继续查看点E是否有左右子树发现没有，我们就回到点A去查看是否有右子树，发现中序遍历点A右边只有点F，那么此时能确定的树的形态如下图。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124160154427.png" alt="image-20221124160154427" style="zoom:67%;" />
+![image-20230224190033226](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190033226.png)
 所以我们发现，前序遍历和中序遍历**可以确定一棵树**！
 
 #### 前序遍历，后序遍历
@@ -2180,15 +2255,15 @@ void dfs(int x){
 
 我们首先可以通过后序遍历的性质，确定根节点是点A，那么此时能确定的树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124174858364.png" alt="image-20221124174858364" style="zoom:67%;" />
+![image-20230224190127334](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190127334.png)
 通过前序遍历的性质我们可以知道如果点A有左子树的话，左子树的根节点一定是点B，如果A没有左子树的话，右子树的根节点也一定是B，所以我们确定不了。我们通过后续遍历的性质知道如果点A有左子树的话，左子树一定是A左边的点，左边的点有FBDEC。假设点B是右子树的根节点的话，F点一定是点B为根节点子树下的一个点，那么F点在后续遍历中一定会比F点先出现，所以我们推导出了B点是点A的左子树的根节点。那么此时能确定的树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124182241842.png" alt="image-20221124182241842" style="zoom:67%;" />
+![image-20230224190139468](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190139468.png)
 同样的通过前序遍历看如果点B有左子树的话，那么他的左子树的根节点一定是点C，我们通过后序遍历查看CED是在B的左边，通过后序遍历左右中的性质，可以推导C就是B的左子树的根节点，所以此时能确定的树的形态如下图
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124194504835.png" alt="image-20221124194504835" style="zoom:67%;" />
+![image-20230224190201354](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190201354.png)
 再查看C是否有左子树，发现前序遍历右边一个是D，如果C有左子树D一定是左子树的根节点，我们再查看后序遍历C的左边，发现什么都没有，所以C一定没有左子树，也没有右子树。那么我们继续查看B的右子树存不存在，如果存在的话D一定是右子树的根节点，我们查看B的左边有ED，如果D是B的右子树的根节点的话，那么ED是成立的所以此时确定了D是B的右子节点，此时能确定的树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124195524422.png" alt="image-20221124195524422" style="zoom:67%;" />
+![image-20230224190216366](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190216366.png)
 我们来查看E到底是D的左子树还是右子树，我们通过前序遍历一定是判断不出来，那么我们就通过后序遍历看，E在D的左边，但是我们没法确定是左子节点还是右子节点，所以就产生了矛盾。
 
 最后得出结论前序遍历，后续遍历**没法确定一棵树**，会产生矛盾。
@@ -2199,21 +2274,24 @@ void dfs(int x){
 
 通过后序遍历的性质，最后一位是根节点，那么此时确定树的形态如下图
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125122536832.png" alt="image-20221125122536832" style="zoom:67%;" />
-通过中序遍历的性质得到，A左边的都是A的左子树，右边都是B的右子树，所以CBDE组成了A的左子树，通过后序遍历的性质左右中，所以最左端一定是A的左子树的根节点。那么此时确定树的形态如下图
+![image-20230224190127334](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190127334.png)
+通过中序遍历的性质得到，A左边的都是A的左子树，右边都是A的右子树，所以CBDE组成了A的左子树，通过后序遍历的性质左右中，我们可以知道F是A的右子节点，所以现在能确定的如下图：
+![image-20230224190622367](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190622367.png)
+随后我们再从后序遍历看左一位是 B 我们从中序遍历能确定 B 一定是 A 的左子节点，所以现在能确定的图如下：
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125122917149.png" alt="image-20221125122917149" style="zoom:67%;" />
-那么我们继续查看和B有关的，通过中序遍历的性质左中右，B左边的一定是B的左子树，所以C一定是B的左子树，我们也可以同时确定他是B的左子树的根节点
-那么此时确定树的形态如下图 <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125123121413.png" alt="image-20221125123121413" style="zoom:67%;" />
+![image-20230224190850717](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224190850717.png)
+随后我们再从后序遍历往左看一位是 D 那么 D 对于 B 来说是 B 的 右子节点，所以现在能确定的图如下：
 
-我们再查看与C有关的，也是通过中序遍历来查看，发现C没有左子树，也没有右子树（C,B之间没有点）。
-我们查看B是否有右子树，发现B,A之间有两个点D,E，那么B的右子树由D,E组成。再通过后序遍历的性质左右中可以确定E是B右子树的根节点。
-此时确定树的形态如下图 
+![image-20230224191024446](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191024446.png)
+随后我们再从后序遍历往左看一位是 E 那么 E 对于 D 来说是 D 的 右子节点，所以现在能确定的图如下：
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125123540470.png" alt="image-20221125123540470" style="zoom:67%;" />
-再查看D，发现E是D的右子树，再发现F是A的右子树。
+![image-20230224191159335](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191159335.png)
+最后我们能确定点 C 是点 B 的左子树 所以最后的图如下：
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221124160154427.png" alt="image-20221124160154427" style="zoom:67%;" />
+![image-20230224191317471](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191317471.png)
+
+
+
 所以最后发现中序遍历和后序遍历**也可以确定一棵树**。
 
 #### 总结：除了前序遍历和后序遍历不能确定一棵树，其他都能确定一棵树。
@@ -2235,7 +2313,7 @@ void dfs(int x){
 
 举个例子
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221125181731575.png" alt="image-20221125181731575" style="zoom:67%;" />
+![image-20230224191711422](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191711422.png)
 此图就不是一颗完全二叉树，因为最后一层有4 ，7没有5，6。
 
 ### 练习：
@@ -2292,7 +2370,8 @@ void dfs(int x){
 
 图 2 中，（A）给定了四个结点a，b，c，d，权值分别为7，5，2，4；第一步如（B）所示，找出现有权值中最小的两个，2 和 4 ，相应的结点 c 和 d 构建一个新的二叉树，树根的权值为 2 + 4 = 6，同时将原有权值中的 2 和 4 删掉，将新的权值 6 加入；进入（C），重复之前的步骤。直到（D）中，所有的结点构建成了一个全新的二叉树，这就是哈夫曼树。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221201140601621.png" alt="image-20221201140601621" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191740162.png" alt="image-20230224191740162" style="zoom: 80%;" />
+
 **做法1：**我们思考每次选择最小的两个点构建出一颗新树，新树的根节点是一个新的结点，并且这个节点的两个儿子节点我们是知道的，所以我们只需要存下这个新的节点，然后再放到序列里面排序即可，最后最新的节点就是根节点，再跑一遍dfs即可。
 
 ```
@@ -2348,10 +2427,9 @@ int main(){
 ```
 
 **做法2：**对于一颗哈夫曼树我们分析其树的每个节点被加了几次。
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221201141208941.png" alt="image-20221201141208941" style="zoom:67%;" />
-我们发现图中所有点的权值的和，就是我们 权值1，2，3，4构造一颗哈夫曼树产生的带权路径长度的和。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224191934793.png" alt="image-20230224191934793" style="zoom:80%;" />
 
-对于点D来说，在点D,C,F,G都产生了一次贡献，所以是4 *  1，点E在点E,C,F,G都产生了一次贡献所以是 2 * 4，以此类推。
+对于每两个树产生的新树，我们可以给他一个权值为两个子树的权值之和，因为深度 + 1，所以产生的贡献多一倍。
 
 所以构造一颗哈夫曼树能产生的最小的带权路径长度，就是每次从序列中选择两个最小的点，获取他们的权值，再把他们的权值放回序列中。
 
@@ -2378,26 +2456,22 @@ for(int i = 1; i <= n; i++){
 
 具体是将所要编码的字符作为叶子节点，该字符在文件中的使用频率作为叶子节点的的权值，以自底向上的方式、通过执行`n-1`次的“合并”运算后构造出最终所要求的树，即哈夫曼树，它的核心思想是让权值大的叶子离根最近。
 
-那么为什么这样子能够保证正确呢？我们首先来看个例子。
+我们首先来看个例子。
 
-对于a，b，c，d，e，f进行编码
+对于A,B,C,D,E进行编码
 
-<img src="C:\Users\Dell\Downloads\a69bc6ca52244914adad5191f2bbf956.png" alt="a69bc6ca52244914adad5191f2bbf956" style="zoom:50%;" />
+![image-20230224192650131](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224192650131.png)
+
+第一次![image-20230224192828323](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224192828323.png)
+下一步![image-20230224192951183](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224192951183.png)
+
+下一步![image-20230224193216470](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224193216470.png)
 
 
-第一次<img src="C:\Users\Dell\Downloads\110292660ea0465691046bbe8c3aa4e3.png" alt="110292660ea0465691046bbe8c3aa4e3" style="zoom:50%;" />
-下一步<img src="C:\Users\Dell\Downloads\d1c74c049b8b47f2940049a5d13566ce.png" alt="d1c74c049b8b47f2940049a5d13566ce" style="zoom:50%;" />
-
-下一步<img src="C:\Users\Dell\Downloads\d170f2311c7b4c43ab18c7d2ac1a80e8.png" alt="d170f2311c7b4c43ab18c7d2ac1a80e8" style="zoom:50%;" />
-
-
-下一步<img src="C:\Users\Dell\Downloads\30c04aa582284f40811d068b14a330d1.png" alt="30c04aa582284f40811d068b14a330d1" style="zoom:50%;" />
-
-下一步<img src="C:\Users\Dell\Downloads\5002eb1281004aa4b803f9b9d01c9a7f.png" alt="5002eb1281004aa4b803f9b9d01c9a7f" style="zoom:50%;" />
+下一步![image-20230224193312062](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224193312062.png)
 
 当我们产生树后如何给出编码呢？我们可以让连向左子树的边变为编码0，让连向右子树的边变为编码1。
-那么 a 的编码就为 1，b 的编码为 011，c 的编码为010，d 的编码为 001，e的编码为 0001，f的编码为0000。我们发现他同时也满足前缀码的定义。
-最终的结果<img src="C:\Users\Dell\Downloads\ccc752e7e4de499281a1bfda77e5af6c.png" alt="ccc752e7e4de499281a1bfda77e5af6c" style="zoom:50%;" />
+那么 A 的编码就为 01，B 的编码为 11，C 的编码为10，D 的编码为 000，E的编码为 001。我们发现他同时也满足前缀码的定义。
 
 ### 练习：
 
@@ -2419,7 +2493,7 @@ for(int i = 1; i <= n; i++){
 我们之前遍历树的方法是深度优先搜索，因为我们每次要先往深度高的地方去走，那么有没有一种方法让我们的树每次先把深度低的点走完再走深度较高的点呢？当然有了，我们假设有一种方法能够把当前层的点存下来，利用当前层的所有的点得到下一层的点，再重复这件事就好了。
 
 大家先看一个例子 假设我现在已经用一个数组a 存下了树中的所有的点，满足第一层的点存在数组 a[$b_1$ ~ $c1$] 中，第二层存在了数组 a[$b_2$ ~ $c_2$]中，第 $i$ 层存在了数组 a[$b_i$ ~ $c_i$] 中，满足 $b_i = c_{i - 1} + 1$  也就是说我们 循环 从第一个位置直到最后一个位置，就是一层一层的往外扩，先把低层的遍历完再去遍历高层。那么我们现在的问题是，如何存下这样的一个数组呢？目前我们知道的只有第一层的点是根节点，那么我们就可以先把根节点放到数组第一个位置。那么如何拿到第二层呢？我们就可以通过邻接表来实现存储，然后找到所有第二层的点给他放到我第一层的数组位置的后边。第三层也是如此，假如我先循环把第二层的点先遍历了，把点都存到第二个点在数组位置后边即可。
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221208112745668.png" alt="image-20221208112745668" style="zoom: 67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224195232921.png" alt="image-20230224195232921" style="zoom:80%;" />
 
 ```
 #include<iostream>
@@ -2712,17 +2786,20 @@ STL 中的 `stack` 容器提供了一众成员函数以供调用，其中较为�
 
 ### 13.10.1 示例1
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111125658923.png" alt="image-20221111125658923" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224195623238.png" alt="image-20230224195623238" style="zoom:80%;" />
+
 **思路**：因为树上每两个点之间都能互相到达，所以经过点$m$的链可以经过所有点，所以最后只要输出点权最大值即可
 
 ### 13.10.2 示例2
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111132327064.png" alt="image-20221111132327064" style="zoom: 67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224195925586.png" alt="image-20230224195925586" style="zoom:80%;" />
+
 **思路：**只需要把其中一个端点当作树根，跑到另一个端点上即可，因为树上的两个点之间有且只有一条路径可以互相到达
 
 ### 13.10.3 示例3
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221111141122929.png" alt="image-20221111141122929" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224200006274.png" alt="image-20230224200006274" style="zoom:80%;" />
+
 **思路：**此题要找到关于子树的性质，所以我们只能确定点1为树根，跑dfs。dfs重复的动作是，取其子树的最大值，那么当是叶子节点的时候直接返回当前值。
 
 # 14.普遍的图
@@ -2821,7 +2898,8 @@ STL 中的 `stack` 容器提供了一众成员函数以供调用，其中较为�
 
 ### 14.2.1 边的长度相同
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221208172125739.png" alt="image-20221208172125739" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218084408666.png" alt="image-20230218084408666" style="zoom:67%;" />
+
 **思路：**边的长度相同的时候，假设离起点为 $1$ 的当作第一层，距离起点为 $2$的当作第二层.....这样只需要跑一遍bfs，就是最短路。
 
 ```
@@ -2882,7 +2960,8 @@ int main(){
 
 ### 14.2.2 边的长度不同
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221208172423051.png" alt="image-20221208172423051" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218084536799.png" alt="image-20230218084536799" style="zoom:67%;" />
+
 **思路：**边的长度不同的时候我们用 bfs 和 dfs走过的方式都不一定是最短的，所以我们使用的时候一定要判断是不是最短的那条路径，如果不是最短的那条路径我们要重新走一遍。
 
 ```
@@ -2974,7 +3053,8 @@ int main(){
 
 ### **14.2.3 边的长度相同求方案数**
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221208160348670.png" alt="image-20221208160348670" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218085351499.png" alt="image-20230218085351499" style="zoom:67%;" />
+
 **思路：**由于边相同我们bfs走到的点一定是最短路径，所以我们只需要$O(n * m)$的复杂度就够了，倘若使用dfs的话由于dfs每走到终点算一条路径，我们的路径数量很多就会导致超时，复杂度大概是$O(2^{n * m})$
 
 ```
@@ -3040,9 +3120,10 @@ int main(){
 
 
 
-### 14.2.4边的长度不相同求方案数
+### 14.2.4 路径距离不相同求方案数
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221208135329133.png" alt="image-20221208135329133" style="zoom: 67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218085313042.png" alt="image-20230218085313042" style="zoom:67%;" />
+
 **思路：**对于这种不讲究路径长度的方案数我们无法使用bfs去做，因为bfs无法确定下一个点到底有没有走过，所以我们必须使用dfs去遍历整张图，一共有$5 * 5$个点。复杂度不好计算，我们大约理解为 $o(2^{n*m})$
 
 ```
@@ -3331,7 +3412,9 @@ $n=p_1p_2p_3···p_r=q_1q_2q_3···q_s$
 
 ## 15.3余数
 
-![image-20220928142743050](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220928142743050.png)
+![image-20230224200430525](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224200430525.png)
+
+
 **运算取mod：**设$a_1 = b*k_1 + c_1$   $a_2 = b * k_2 + c_2$
 求证： $(a_1 + a_2) \% b  = (a_1 \% b + a_2 \% b) \% b$
 $(a_1 \% b + a_2 \% b) \% b =  (c_1 + c_2)  \%  b$
@@ -3372,8 +3455,7 @@ $a /x \% b== k_1 \% b$
 根据整除的性质， a $\equiv $b(mod -m) **如果没有特别说明模数一般是正整数**
 式中的b是a对模m的剩余，这个概念与余数完全一致。通过限定b的范围，相应的有a对模m的最小非负剩余、绝对最小剩余、最小正剩余。
 
-![image-20220927181349482](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220927181349482.png)
-
+![image-20230224200518102](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224200518102.png)
 
 
 ### 证明
@@ -3400,7 +3482,38 @@ $a /x \% b== k_1 \% b$
 
 **乘法逆元**: 如果一个线性同余方程ax $\equiv $1(mod b)  ，则称x为a mod b的逆元，记作a^-1^
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220928115506240.png" alt="image-20220928115506240" style="zoom: 80%;" />
+### 线性求逆元
+
+求出 $1,2,\dots,n$ 中每个数关于 $p$ 的逆元。
+
+如果对于每个数进行单次求解，以上两种方法就显得慢了，很有可能超时，所以下面来讲一下如何线性（$O(n)$）求逆元。
+
+首先，很显然的 $1^{-1} \equiv 1 \pmod p$；
+
+证明： 对于 $\forall p \in \mathbf{Z}$，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$，而这是推算出其他情况的基础。
+
+其次对于递归情况 $i^{-1}$，我们令 $k = \lfloor \frac{p}{i} \rfloor$，$j = p \bmod i$，有 $p = ki + j$。再放到 $\mod p$ 意义下就会得到：$ki+j \equiv 0 \pmod p$；
+
+两边同时乘 $i^{-1} \times j^{-1}$：
+
+$kj^{-1}+i^{-1} \equiv 0 \pmod p$
+
+$i^{-1} \equiv -kj^{-1} \pmod p$
+
+再带入 $j = p \bmod i$，有 $p = ki + j$，有：
+
+$i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$
+
+我们注意到 $p \bmod i < i$，而在迭代中我们完全可以假设我们已经知道了所有的模 $p$ 下的逆元 $j^{-1}, j < i$。
+
+故我们就可以推出逆元，利用递归的形式，而使用迭代实现：
+
+$$
+i^{-1} \equiv \begin{cases}
+    1,                                           & \text{if } i = 1, \\
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
+\end{cases} \pmod p
+$$
 
 ```
 inv[1] = 1;// 代表 i的逆元
@@ -3451,13 +3564,56 @@ for (int i = 2; i <= n; ++i) {
 
 我们通过证明可以得到 gcd(a,b) = gcd(b,a mod b)，过程如下
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220927222221203.png" alt="image-20220927222221203"  />
+### 欧几里得算法
+
+
+设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
+
+由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$，所以对于 $a,b$ 的公约数，它也会是 $b,a \bmod b$ 的公约数。
+
+反过来也需要证明：
+
+设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
+
+因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
+
+既然两式公约数都是相同的，那么最大公约数也会相同。
+
+所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
+
+既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
 ```
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220928155957614.png" alt="image-20220928155957614"  />
+#### 性质
+
+欧几里得算法的时间效率如何呢？下面我们证明，欧几里得算法的时间复杂度为 $O(\log n)$。
+
+**证明**：当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
+
+-   $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
+-   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
+
+第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
+
+从而我们最多递归 $O(\log n)$ 次就可以得出结果。
+
+事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../combinatorics/fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度。
+
+### 更相减损术
+
+大整数取模的时间复杂度较高，而加减法时间复杂度较低。针对大整数，我们可以用加减代替乘除求出最大公约数。
+
+#### 过程
+
+已知两数 $a$ 和 $b$，求 $\gcd(a,b)$。
+
+不妨设 $a \ge b$，若 $a = b$，则 $\gcd(a,b)=a=b$。
+否则，$\forall d\mid a, d\mid b$，可以证明 $d\mid a-b$。
+
+因此，$a$ 和 $b$ 的 **所有** 公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$。
 
 
 ### 练习
@@ -3467,7 +3623,33 @@ int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 
 ## 15.7最小公倍数
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20220928160026725.png" alt="image-20220928160026725" style="zoom:67%;" />
+### 定义
+
+一组整数的公倍数，是指同时是这组数中每一个数的倍数的数。0 是任意一组整数的公倍数。
+
+一组整数的最小公倍数，是指所有正的公倍数里面，最小的一个数。
+
+### 两个数
+
+设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$，$b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$
+
+我们发现，对于 $a$ 和 $b$ 的情况，二者的最大公约数等于
+
+$p_1^{\min(k_{a_1}, k_{b_1})}p_2^{\min(k_{a_2}, k_{b_2})} \cdots p_s^{\min(k_{a_s}, k_{b_s})}$
+
+最小公倍数等于
+
+$p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_s}, k_{b_s})}$
+
+由于 $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$
+
+所以得到结论是 $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$
+
+要求两个数的最小公倍数，先求出最大公约数即可。
+
+### 多个数
+
+可以发现，当我们求出两个数的 $\gcd$ 时，求最小公倍数是 $O(1)$ 的复杂度。那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的 $\gcd$，或许在求多个数的 $\gcd$ 时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可。
 
 ## 15.8埃拉托斯特尼筛法
 
@@ -3544,11 +3726,11 @@ void init() {
 ## 16.1链表
 
 链表是一种物理[存储单元](https://baike.baidu.com/item/存储单元/8727749?fromModule=lemma_inlink)上非连续、非顺序的[存储结构](https://baike.baidu.com/item/存储结构/350782?fromModule=lemma_inlink)，[数据元素](https://baike.baidu.com/item/数据元素/715313?fromModule=lemma_inlink)的逻辑顺序是通过链表中的[指针](https://baike.baidu.com/item/指针/2878304?fromModule=lemma_inlink)链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储[数据元素](https://baike.baidu.com/item/数据元素?fromModule=lemma_inlink)的数据域，另一个是存储下一个结点地址的[指针](https://baike.baidu.com/item/指针/2878304?fromModule=lemma_inlink)域。 相比于[线性表](https://baike.baidu.com/item/线性表/3228081?fromModule=lemma_inlink)[顺序结构](https://baike.baidu.com/item/顺序结构/9845234?fromModule=lemma_inlink)，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到$O(1)$的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要$O(n)$的时间，而线性表和顺序表相应的时间复杂度分别是$O(logn)$和$O(1)$。
-![image-20221223104456308](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223104456308.png)
+![image-20230224201407290](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224201407290.png)
 
 ### 插入
 
-![image-20221223104735712](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223104735712.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224201710045.png" alt="image-20230224201710045" style="zoom:80%;" />
 
 ```
 struct node{
@@ -3575,7 +3757,9 @@ void insert(int x,node y){ //假设要把y 插入到数据域为x的后边
 
 ### 16.1.1数据不重复链表
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223105719842.png" alt="image-20221223105719842" style="zoom:67%;" />
+![image-20230224202040601](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202040601.png)
+
+
 **思路：**对于有$q$次插入的，那么一定是我们的链表了，我们可以使用数据不重复链表。
 
 大体思路就是因为数据不重复，所以我们可以使用两个数组 to[]，last[]。to[i]代表 数字 $i$ 后边的是谁，last[i]代表 数字 $i$ 的上一个是谁，因为数据不重复，所以to，last不会产生重复，这种写法把数据域和指针域重叠了一起。
@@ -3622,7 +3806,8 @@ int main(){
 
 ### 16.1.2数据重复链表
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223112415241.png" alt="image-20221223112415241" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202125280.png" alt="image-20230224202125280" style="zoom:80%;" />
+
 **思路：**数据重复链表，其实就是我们一开始讲的链表的写法，无非就是有数据域和指针域两种，我们只需要模拟出数据域和指针域就好了。我们每次可以给新增的数据一个新的编号，这样子每组数据是唯一的，我们把编号当作新的数据不重复链表即可。
 
 ```
@@ -3716,20 +3901,24 @@ A : "所以你不用重新计算，因为你记住了第一个等式的值为8!�
 
 ### 17.1.1 P1216 [USACO1.5][IOI1994]数字三角形 Number Triangles
 
-![image-20221021130315391](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021130315391.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202419237.png" alt="image-20230224202419237" style="zoom:80%;" />
+
+
 
 对于第一行我们已经知道了他的最大值，所以对于第二行通过第一行枚举就好了，第三行通过第二行枚举就好了。
 每一行都要等上一行枚举完成才能进行新一轮的枚举。并且当前行只会影响下一行，不会影响上一行，我们称为无后效性，只对未来有影响。
 
 ### 17.1.2 U255571 最长上升子序列（基础版）
 
-![image-20221021133659630](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021133659630.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202509993.png" alt="image-20230224202509993" style="zoom:80%;" />
 
 ### 17.1.3 U255583 最长上升子序列（加强版）
 
 通过上一题，我们发现，我们只需要找到前面最长的且最后一位比我们当前i小的即可。
 
-![image-20221021142510253](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021142510253.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202548319.png" alt="image-20230224202548319" style="zoom:80%;" />
+
+
 
 记录完后我们发现有一个性质，那就是长度越长的结尾的数一定会越大
 以 $i$ 为结尾的 长度为 $j$ 的上升子序列，一定是在前 $i - 1$存在一个以点$k$结尾长度为 $j - 1$的上升子序列。只有满足 $a_i > a_k$才能成立
@@ -3738,13 +3927,13 @@ A : "所以你不用重新计算，因为你记住了第一个等式的值为8!�
 
 ### 17.1.4 U255600 最长公共子序列
 
-![image-20221021152618679](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021152618679.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202639469.png" alt="image-20230224202639469" style="zoom:80%;" />
 
 ### 17.1.5 P2758 编辑距离
 
-![image-20221021155632483](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021155632483.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202716729.png" alt="image-20230224202716729" style="zoom:80%;" />
 
-![image-20221021160027095](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221021160027095.png)
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224202735305.png" alt="image-20230224202735305" style="zoom:80%;" />
 
 可以由这两种状态转移
 
@@ -3754,16 +3943,21 @@ A : "所以你不用重新计算，因为你记住了第一个等式的值为8!�
 
 ### 17.2.1 01背包
 
-![image-20221008183530564](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221008183530564.png)
+在具体讲何为「背包 dp」前，先来看如下的例题：
 
+题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
+在上述例题中，由于每个物体只有两种可能的状态（取与不取），对应二进制中的 $0$ 和 $1$，这类问题便被称为「0-1 背包问题」。
 
 例题中已知条件有第$i$个物品的重量 $w_i$，价值 $v_i$，以及背包的总容量 $W$。
 
 设 DP 状态 $f_{i,j}$为在只能放前$i$个物品的情况下，容量为$j$的背包所能达到的最大总价值。
 那么对于容量为$j$，最大总价值为$f_{i,j}$，前$i$个物品一定有一种选取方式成立
 考虑转移。假设当前已经处理好了前$i - 1$个物品的所有状态，那么对于第$i$个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为$f_{i - 1,j}$；当其放入背包时，背包的剩余容量会减小 ，背包中物品的总价值会增大 ，故这种情况的最大价值为$f_{i - 1,j - w_{i}} + v_i$。
-由此可以得出状态转移方程：![image-20221011104826290](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221011104826290.png)
+由此可以得出状态转移方程：
+$$
+f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
+$$
 
 ### 实现：
 
@@ -3778,7 +3972,7 @@ for(int i = 1; i <= n; i++){
 }
 ```
 
-上述代码的空间复杂度和时间复杂度都是 O(nw)
+上述代码的空间复杂度和时间复杂度都是 O(n w)
 有什么办法可以降低空间复杂度吗？
 我可以发现每一个$f_{i,j}$他只与$f_{i - 1,j}$有关，所以当我们遍历到$i$的时候$i - 1$以前的状态我们都可以舍弃不要，所以我们每次只需要记录两种状态就可以了，所以我们可以采用滚动数组。
 
@@ -3804,9 +3998,11 @@ for (int i = 1; i <= n; i++)
     f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 ```
 
-![image-20221011105701889](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221011105701889.png)
+这段代码哪里错了呢？枚举顺序错了。
 
+仔细观察代码可以发现：对于当前处理的物品 $i$ 和当前状态 $f_{i,j}$，在 $j\geqslant w_{i}$ 时，$f_{i,j}$ 是会被 $f_{i,j-w_{i}}$ 所影响的。这就相当于物品 $i$ 可以多次被放入背包，与题意不符。（事实上，这正是完全背包问题的解法）
 
+为了避免这种情况发生，我们可以改变枚举的顺序，从 $W$ 枚举到 $w_{i}$，这样就不会出现上述的错误，因为 $f_{i,j}$ 总是在 $f_{i,j-w_{i}}$ 前被更新。
 
 ```
 // C++ Version
@@ -3820,9 +4016,25 @@ for (int i = 1; i <= n; i++)
 
 ## 17.3 完全背包
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221008183718260.png" alt="image-20221008183718260" style="zoom: 80%;" />
 
-![image-20221011110332625](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221011110332625.png)
+
+完全背包模型与 0-1 背包类似，与 0-1 背包的区别仅在于一个物品可以选取无限次，而非仅能选取一次。
+
+我们可以借鉴 0-1 背包的思路，进行状态定义：设 $f_{i,j}$ 为只能选前 $i$ 个物品时，容量为 $j$ 的背包可以达到的最大价值。
+
+需要注意的是，虽然定义与 0-1 背包类似，但是其状态转移方程与 0-1 背包并不相同。
+
+### 过程
+
+可以考虑一个朴素的做法：对于第 $i$ 件物品，枚举其选了多少个来转移。这样做的时间复杂度是 $O(n^3)$ 的。
+
+状态转移方程如下：
+
+$$
+f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
+$$
+
+
 这样的枚举方法就是把完全背包转换成了01背包，把一个物品$i$当作一个物品，把两个物品$i$当作一个物品，...，把n个物品$i$当作一个物品。
 
 ```
@@ -3862,9 +4074,15 @@ for (int i = 1; i <= n; i++)
 
 ## 17.4多重背包
 
-![image-20221008183835536](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221008183835536.png)
+多重背包也是 0-1 背包的一个变式。与 0-1 背包的区别在于每种物品有 $k_i$ 个，而非一个。
 
+一个很朴素的想法就是：把「每种物品选 $k_i$ 次」等价转换为「有 $k_i$ 个相同的物品，每个物品选一次」。这样就转换成了一个 0-1 背包模型，套用上文所述的方法就可已解决。状态转移方程如下：
 
+$$
+f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
+$$
+
+时间复杂度 $O(W\sum_{i=1}^nk_i)$。
 
 
 ```
@@ -3878,10 +4096,32 @@ for(int i = 1; i <= n; i++){
 }
 ```
 
-![image-20221009133332834](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221009133332834.png)
+### 二进制分组优化
 
+考虑优化。我们仍考虑把多重背包转化成 0-1 背包模型来求解。
 
-![image-20221009133342948](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221009133342948.png)
+### 解释
+
+显然，复杂度中的 $O(nW)$ 部分无法再优化了，我们只能从 $O(\sum k_i)$ 处入手。为了表述方便，我们用 $A_{i,j}$ 代表第 $i$ 种物品拆分出的第 $j$ 个物品。
+
+在朴素的做法中，$\forall j\le k_i$，$A_{i,j}$ 均表示相同物品。那么我们效率低的原因主要在于我们进行了大量重复性的工作。举例来说，我们考虑了「同时选 $A_{i,1},A_{i,2}$」与「同时选 $A_{i,2},A_{i,3}$」这两个完全等效的情况。这样的重复性工作我们进行了许多次。那么优化拆分方式就成为了解决问题的突破口。
+
+### 过程
+
+我们可以通过「二进制分组」的方式使拆分方式更加优美。
+
+具体地说就是令 $A_{i,j}\left(j\in\left[0,\lfloor \log_2(k_i+1)\rfloor-1\right]\right)$ 分别表示由 $2^{j}$ 个单个物品「捆绑」而成的大物品。特殊地，若 $k_i+1$ 不是 $2$ 的整数次幂，则需要在最后添加一个由 $k_i-2^{\lfloor \log_2(k_i+1)\rfloor-1}$ 个单个物品「捆绑」而成的大物品用于补足。
+
+举几个例子：
+
+-   $6=1+2+3$
+-   $8=1+2+4+1$
+-   $18=1+2+4+8+3$
+-   $31=1+2+4+8+16$
+
+显然，通过上述拆分方式，可以表示任意 $\le k_i$ 个物品的等效选择方式。将每种物品按照上述方式拆分后，使用 0-1 背包的方法解决即可。
+
+时间复杂度 $O(W\sum_{i=1}^n\log_2k_i)$
 典型的空间复杂度换取时间复杂度的做法
 
 
@@ -3904,7 +4144,11 @@ for (int i = 1; i <= m; i++) {
 
 ## 17.5混合背包
 
-![image-20221009133533775](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221009133533775.png)
+混合背包就是将前面三种的背包问题混合起来，有的只能取一次，有的能取无限次，有的只能取 $k$ 次。
+
+这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了。下面给出伪代码：
+
+### 过程
 
 
 ```
@@ -3938,11 +4182,12 @@ for (循环物品种类) {
 
 ### 17.6.1 无环合并类区间dp
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223140012060.png" alt="image-20221223140012060" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224203700091.png" alt="image-20230224203700091" style="zoom:80%;" />
 
-**思路：**对于这种题来说一定是对于区间来说的，因为他的价值随着区间的扩大而扩大，不停的区间合并产生的区间不同，对于同样的一个区间 i,j 可以由 i,i + 1 与 i + 2,j 合并，或者 i,i + 2与i + 3,j来合并...... 所以我们的目标就是找到最优的一种合并方式
+**思路：**对于这种题来说一定是对于区间来说的，因为他的价值随着区间的扩大而扩大，不停的区间合并产生的区间不同，对于同样的一个区间 $[i,j]$  可以由 $[i,i + 1]$ 与 $[i + 2,j]$  合并，或者 $[i,i + 2]$ 与 $[i + 3,j]$ 来合并...... 所以我们的目标就是找到最优的一种合并方式
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223141521099.png" alt="image-20221223141521099" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224203518856.png" alt="image-20230224203518856" style="zoom:80%;" />
+
 对于区间长度为 k的需要通过长度为 1，2..... k-1的推导过来，所以我们要从区间长度短的开始推导。哪些是已知的状态呢？区间长度为1的时候是已知的状态。
 
 ```
@@ -3971,7 +4216,7 @@ int main(){
 
 ### 17.6.2 有环合并类区间dp
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223142341002.png" alt="image-20221223142341002" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224203352697.png" alt="image-20230224203352697" style="zoom:80%;" />
 
 #### 怎样处理环
 
@@ -3990,8 +4235,9 @@ int main(){
 
 ### 17.6.7 不合并类区间dp
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223145703907.png" alt="image-20221223145703907" style="zoom:67%;" />
-**思路：**典型的一看就像区间dp但是不知道怎么合并，因为这道题其实就是不合并。对于一个区间 i,j 的人来说，最后排进队的要么是 第 i个要么就是 第 j个人，所以对于区间 i，j的转移只有 i - 1，j 和 i，j - 1，其他的我们没法合并。对于这两个区间来说，我们需要知道最后一个人是谁我们才能知道 第 i个人或者第 j个人排在左边还是右边，所以我们还需要知道前一个区间最后一位进来的是谁，以至于我们的区间就变成了 i，j，k，表示 区间 i，j排好队了，最后一个进来的是 k ，我们可以让 k = 0代表最左，k = 1代表最右，最后实现转移。
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224203742710.png" alt="image-20230224203742710" style="zoom:80%;" />
+
+**思路：**典型的一看就像区间dp但是不知道怎么合并，因为这道题其实就是不合并。对于一个区间 $[i,j]$的人来说，最后排进队的要么是 第$ i $个要么就是 第 $j $个人，所以对于区间 $[i，j] $的转移只有  $[i - 1，j]$ 和$ [i，j - 1]$，其他的我们没法合并。对于这两个区间来说，我们需要知道最后一个人是谁我们才能知道 第 i个人或者第 $j$个人排在左边还是右边，所以我们还需要知道前一个区间最后一位进来的是谁，以至于我们的区间就变成了 $i，j，k$，表示 区间 $[i，j]$排好队了，最后一个进来的是 $k$ ，我们可以让 $k$ = 0代表最左，$k$ = 1代表最右，最后实现转移。
 
 ```
 #include <bits/stdc++.h>
@@ -4027,7 +4273,7 @@ int main(){
 
 ### 练习
 
-1. 如图<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223161222832.png" alt="image-20221223161222832" style="zoom:67%;" />
+1. 如图<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224203959260.png" alt="image-20230224203959260" style="zoom:80%;" />
    对于第一条路径来说有X种方法到达点B，对于第二条路径来说有Y种方法到达点B，对于第三条路径来说有Z种方法到达点B，请问一共有多少种方法到达点B?
 2. 某医院研究所研制了5种消炎药X1、X2、X3、X4、X5和4种退烧药T1、T2、T3、T4,现从中取出两种消炎药和一种退烧药同时使用进行疗效试验，又知X1、X2两种消炎药必须同时搭配使用，但X3和X4 两种药不能同时使用，则不同的试) (      )
    A.16种         B.15种       C.14种        D.13种
@@ -4037,7 +4283,7 @@ int main(){
 完成一件事需要两个步骤，做第1步有种不同的方法，做第2步有n种不同的方法，那么完成这件事共有N = m*n种不同的方法。要点诠释:
 如果完成一件事需要分成n个步骤，缺一不可，即需要依次完成所有的步骤，才能完成这件事，而完成每一个步骤各有若干种不同的方法，计算完成这件事的方法种数就用分步乘法计数原理。解题时，关键是分清楚完成这件事是分类还分步，在应用分步乘法计数原理时，各个步骤都完成，才算完成这件事，步骤之间互不影响，即前一步用什么方法，不影响后一步采职什么方法，运用分步乘法计数原理，要确定好次序，还要注意元素是否可以重复选取。
 
-![image-20221223165157065](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223165157065.png)
+![image-20230224204020659](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204020659.png)
 
 
 ### 练习
@@ -4067,14 +4313,13 @@ int main(){
    2各步计数相互独立;
    3.只要有一步中所采取的方法不同，则对应的完成此事的方法也不同63.利用两个基本原理解决具体问题时的方法技巧:
    利用两个基本原理解决具体问题，关键环节是分类或者分步。类与步的关系式辩证的。有些问题需要 先分类，再在每一类里再分步:有些问题需要先分步，再在每一步里再分类，等等。到底采用何种顺序分 类与分步，要看
-   <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223165907373.png" alt="image-20221223165907373" style="zoom:67%;" />
-   <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223165959744.png" alt="image-20221223165959744" style="zoom:67%;" />
+   ![image-20230224204049735](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204049735.png)
 
 ### 练习
 
 1. 如图所示，在连接正八边形的三个顶点而成的三角形中，与正八边形 有公共边的三角形有个（       ）
 
-   <img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223170322881.png" alt="image-20221223170322881" style="zoom:67%;" />
+   ![image-20230224204101485](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204101485.png)
 
 2. 用数字 1,2,3 可写出多少个小于 1000 的正整数?(各位上的数字允许重复) (        )
 
@@ -4111,7 +4356,7 @@ int main(){
     (2)把这两个口袋里的9封信，分别投入4 个邮筒，有多少种不同的投法?
 
 13. 用5种不同颜色给图中A，B，C，D四个区域涂色，每个区域涂一种 颜色.若要求相邻(有公共边的涂色方法 ?
-    ![image-20221223171129017](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221223171129017.png)
+    ![image-20230224204117047](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204117047.png)
 
 14. 某赛季足球比赛的计分规则是: 胜一场得3分,平一场得1分，负一场得0分球队打完15场,积 33分,若不考虑顺序，该队胜、负、平的情形有 ( ).
     A.3种            B.4种             C.5种             D.6种
@@ -4331,7 +4576,7 @@ $C_{n}^{r} = C_{n - 1}^{r - 1} + C_{n - 1}^{r}$
 #### 有10个运动员名额，在分给7个班，每班至少一个,有多少种分配方案?
 
 **分析：**因为10个名额没有差别，把它们排成一排。相邻名额之间形成9个空隙。在9个空档中选6个位置插个隔板可把名额分成7份，对应地分给7个班级，每一种插板方法对应一种分法共有$C_{9}^{6}$种分法，这种方法叫**隔板法**
-![image-20221228100906304](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221228100906304.png)
+![image-20230224204318666](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204318666.png)
 
 #### 结论1
 
@@ -4376,7 +4621,7 @@ $C_{n}^{r} = C_{n - 1}^{r - 1} + C_{n - 1}^{r}$
 5. 在一次演唱会上共10名演员，其中8人能能唱歌,5人会跳舞,现要演出一个2人唱歌2人伴舞的节目,有多少选派方法?
 6. 设有编号1,2,3,4,5的五个球和编号1,2,3,4,5的五个盒子,现将5个球投入这五个盒子内,要求每个盒子放一个球，并只恰好有两个球的编号与盒子的编号相同有多少投法
 7. 给图中区域涂色,要求相邻区域不同色,现有4种可选颜色,则不同的着色方法有(       )种
-   ![image-20221228124429932](C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221228124429932.png)
+   ![image-20230224204439054](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204439054.png)
 
 ### 18.5.4 特殊例题3
 
@@ -4452,7 +4697,7 @@ $C_{n}^{0} + C_{n}^{1} + ...+ C_{n}^{n - 1} + C_{n}^{n} = 2^n$
 
 #### 练习：
 
-1. 某城市的街区由12个全等的矩形区组成其中实线表示马路，从A走到B的最短路径有多少种?<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221228130940368.png" alt="image-20221228130940368" style="zoom:67%;" />
+1. 某城市的街区由12个全等的矩形区组成其中实线表示马路，从A走到B的最短路径有多少种?![image-20230224204419736](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204419736.png)
 
    
 
@@ -4693,6 +4938,11 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 标准库特别提供了对 `bool` 的 `vector` 特化，每个“`bool`”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference`。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [`bitset`](./bitset.md)。
 
+### `vector排序`
+
+![image-20230218195909622](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230218195909622.png)
+
+
 ## 19.2 deque
 
 `std::deque` 是 STL 提供的 [双端队列](../../ds/queue.md) 数据结构。能够提供线性复杂度的插入和删除，以及常数复杂度的随机访问。
@@ -4783,7 +5033,9 @@ deque<int> v5(std::move(v2));
 
 # 20. 位运算进阶
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221214201118400.png" alt="image-20221214201118400" style="zoom:67%;" />
+![image-20230224204539502](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204539502.png)
+
+
 **思路：**考虑$a * b \% p = a * (k_1^{c_1} \% p + k_2^{c_2} \% p + ... + k_n^{c_n} \% p) \% p$，我们发现个问题不管我们在哪里取模都有可能超出长整形吗，但是倘若我们能使得 $a*k_i$不超出长整形范围，他们之间的加法也不会超出长整形，因为长整形的数据范围为 9e18。我们又考虑$a * c \% p = a * (k_1^{b_1} \% p + k_2^{b_2} \% p + ... + k_n^{b_n} \% p) \% p = a * (k_1 + k_1 + ... + k_2 + k_2 + ... +k_n + k_n)$，此时 $k_i$为质因子无法继续分解，我们如果想要相加不超过长整形，只能考虑 $k_i == 2$ 所以我们往二进制去想。
 把 b写成二进制形式，然后如果某位上为1就加上它$a*（2^n）$（$n$与这位的位置有关）
 并且每次计算后取模就可以了  
@@ -4821,7 +5073,9 @@ int main(){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221215144211618.png" alt="image-20221215144211618" style="zoom:67%;" />
+![image-20230224204710420](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204710420.png)
+
+
 **思路：**考虑 $a ^ b$ = $a^{c_1}*a^{c_2} *...*a^{c^n}$满足$c_1 + c_2 + ..c_n == b$，如果 $x \% 2 == 0$满足$a^x == (a^2)^{x / 2}$。倘若 $c_i$都是$c_{i - 1}$的整数倍，那么题目就变得简单起来了，如果$c_i == c_{i -1}$ 那么$n$最多为31，因为$2^{31}$是$b$的极限。所以我们考虑二进制分解$b$对于二进制的每一位来说从第$i$位到第$i + 1$位，我们都可以使得$a = a * a$，这样最后的复杂度就变为了$o(logn)$。
 
 ```
@@ -4854,10 +5108,13 @@ int main(){
 
 ### 21.1 示例题目
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221227094349642.png" alt="image-20221227094349642" style="zoom:67%;" />
+![image-20230224204927120](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204927120.png)
+
+
 **思路：**中位数有非常优秀的性质，比如说在这道题目中，每一个点到中位数的距离，都是满足全局的最有性，而不是局部最优性。具体的来说，我们设在仓库左边的所有点，到仓库的距离之和为p，右边的距离之和则为q，那么我们就必须让p+q的值尽量小。当仓库向左移动的话，p会减少x，但是q会增加n−x，所以说当为仓库中位数的时候,p+q最小。
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221227094958308.png" alt="image-20221227094958308" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224204945559.png" alt="image-20230224204945559" style="zoom:80%;" />
+
 对于 $100\%$ 的数据，$1 \le N \le 5\times 10^4$，$1 \le W_i \le 10^4$，$1 \le S_i \le 10^9$。
 **思路：**假设现在有 a,b两个奶牛,重量和力量分别为Wa,Wb,Sa,Sb，a,b奶牛头上的奶牛重W。 那么对于a,b有两种情况，一种是a在b的头上，一种是b在a的头上 
 1.a在b的头上，那么a的压扁指数就是 W - Sa，b的压扁质数就是 W + Wa - Sb。 
@@ -4885,7 +5142,9 @@ int main(){
 
 ### 22.1 示例题目
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221227100533878.png" alt="image-20221227100533878" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224205142601.png" alt="image-20230224205142601" style="zoom:80%;" />
+
+
 
 **思路：**和我们普通加法一样，只不过变成了字符的形式进行加减了而已，给他两个数组记录在字符数组里边，第一件事我们要比较两个数组的长度是否相等，长度不相等位数就不相等，所以我们还需要记录这些数字的长度，然后从两个数的第一位开始加，并且记录进位，依次模拟即可。
 
@@ -4931,7 +5190,9 @@ int main(){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221227101622746.png" alt="image-20221227101622746" style="zoom:67%;" />
+![image-20230224205220812](C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224205220812.png)
+
+
 **思路：**首先数字相乘他们的位数应该相加，所以我们的数组大小要开数字长度的两倍，随后一位一位进行模拟乘法，并且记录进位即可。
 
 ```
@@ -4975,7 +5236,8 @@ int main(){
 }
 ```
 
-<img src="C:\Users\Dell\AppData\Roaming\Typora\typora-user-images\image-20221227101928542.png" alt="image-20221227101928542" style="zoom:67%;" />
+<img src="C:%5CUsers%5CAdmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230224205241576.png" alt="image-20230224205241576" style="zoom:80%;" />
+
 **思路：**此题b不超过10^9^所以就可以使用我们最简单的除法思路，从最高位开始，如果当前数比 b 大，则记录余数，否则的话答案就增加个0然后把当前数 * 10 加上下一位，模拟即可。
 
 ```
